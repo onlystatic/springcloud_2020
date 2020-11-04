@@ -1,0 +1,16 @@
+server:
+  port: 80
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+ribbon:
+  #读取时间
+  ReadTimeout: 5000
+  #建立连接时间
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    com.noonhope.springcloud.service.PaymentFeignService: debug
