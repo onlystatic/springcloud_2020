@@ -1,0 +1,24 @@
+server:
+  port: 3366
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    #config客户端配置
+    config:
+      label: master #分支名称
+      name: config  #配置文件名称
+      profile: dev  #读取后缀名称，上述3个综合：master分支上的config-dev.yml的配置文件 http://localhost:3344/master/config-dev.yml
+      uri: http://localhost:3344  #配置中心地址
+      #curl -X POST "http://localhost:3355/actuator/refresh"
+#服务注册至eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
