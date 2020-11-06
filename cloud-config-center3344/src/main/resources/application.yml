@@ -14,7 +14,7 @@ spring:
             - springcloud_config
       #默认分支
       label: master
-      #curl -X POST "http://localhost:3344/actuator/refresh"
+      #curl -X POST "http://localhost:3344/actuator/bus-refresh"
   #RabbitMQ相关配置 15672是web管理界面访问端口，5672是MQ的访问端口
   rabbitmq:
     host: localhost
