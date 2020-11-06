@@ -21,6 +21,7 @@ spring:
           destination: studyExchange  #表示要用到的Exchange名称定义
           content-type: application/json #消息格式，文本text/plain
           binder: defaultRabbit #设置要绑定的消息服务具体设置
+          group: noonhopeA #消费分组，多个服务同一个组就不会导致重复消费
 #服务注册至eureka
 eureka:
   client:
