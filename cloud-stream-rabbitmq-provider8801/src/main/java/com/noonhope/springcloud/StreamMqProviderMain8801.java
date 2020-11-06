@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/11/6 12:35
  */
 @SpringBootApplication
-public class StreamRabbitMqMain8801 {
+public class StreamMqProviderMain8801 {
 
     public static void main(String[] args) {
-        SpringApplication.run(StreamRabbitMqMain8801.class, args);
+        SpringApplication.run(StreamMqProviderMain8801.class, args);
     }
 }
