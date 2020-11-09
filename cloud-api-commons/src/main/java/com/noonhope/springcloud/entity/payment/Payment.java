@@ -17,4 +17,9 @@ import lombok.NoArgsConstructor;
 public class Payment extends BaseModel {
 
     private String serial;
+
+    public Payment(Long id, String serial) {
+        this.setId(id);
+        this.serial = serial;
+    }
 }
