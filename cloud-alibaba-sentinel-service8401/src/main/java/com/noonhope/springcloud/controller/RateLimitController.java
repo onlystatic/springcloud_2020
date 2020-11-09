@@ -28,6 +28,6 @@ public class RateLimitController {
     @GetMapping("/rate_limit/by_url")
     @SentinelResource(value = "by_url")
     public CommonResult byUrl() {
-        return new CommonResult(200, "by_url按资源名访问OK.", new Payment(2020L, UUID.randomUUID().toString()));
+        return new CommonResult(200, "按URL访问OK.", new Payment(2020L, UUID.randomUUID().toString()));
     }
 }
