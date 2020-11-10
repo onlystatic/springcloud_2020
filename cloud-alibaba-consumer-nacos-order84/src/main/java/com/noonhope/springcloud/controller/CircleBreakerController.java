@@ -1,6 +1,7 @@
 package com.noonhope.springcloud.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.noonhope.springcloud.entity.common.CommonResult;
 import com.noonhope.springcloud.entity.payment.Payment;
 import javax.annotation.Resource;
@@ -21,7 +22,11 @@ public class CircleBreakerController {
     private RestTemplate restTemplate;
 
     @GetMapping("/consumer/fallback/{id}")
-    @SentinelResource(value = "fallback")
+    //@SentinelResource(value = "fallback")
+    //@SentinelResource(value = "fallback", fallback = "fallbackHandler")
+    //@SentinelResource(value = "fallback", blockHandler = "blockHandler")
+    @SentinelResource(value = "fallback", fallback = "fallbackHandler", blockHandler = "blockHandler",
+            exceptionsToIgnore = {IllegalArgumentException.class})
     public CommonResult<Payment> fallback(@PathVariable("id") Long id) {
         CommonResult<Payment> result = restTemplate
                 .getForObject(SERVICE_URL + "/paymentSql/" + id, CommonResult.class, id);
@@ -32,6 +37,30 @@ public class CircleBreakerController {
         }
 
         return result;
+    }
+
+    /**
+     * fallback处理方法
+     *
+     * @param id
+     * @param throwable
+     * @return
+     */
+    public CommonResult<Payment> fallbackHandler(@PathVariable("id") Long id, Throwable throwable) {
+        Payment payment = new Payment(id, null);
+        return new CommonResult<>(444, "兜底异常，fallbackHandler：" + throwable.getMessage(), payment);
+    }
+
+    /**
+     * blockHandler
+     *
+     * @param id
+     * @param blockException
+     * @return
+     */
+    public CommonResult<Payment> blockHandler(@PathVariable("id") Long id, BlockException blockException) {
+        Payment payment = new Payment(id, null);
+        return new CommonResult<>(445, "Sentinel限流，无此流水，blockHandler：" + blockException.getMessage(), payment);
     }
 
 }
