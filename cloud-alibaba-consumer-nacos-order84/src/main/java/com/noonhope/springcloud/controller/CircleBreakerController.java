@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.noonhope.springcloud.entity.common.CommonResult;
 import com.noonhope.springcloud.entity.payment.Payment;
+import com.noonhope.springcloud.service.PaymentService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +19,12 @@ import org.springframework.web.client.RestTemplate;
 public class CircleBreakerController {
 
     private static final String SERVICE_URL = "http://nacos-payment-provider";
+
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private PaymentService paymentService;
 
     @GetMapping("/consumer/fallback/{id}")
     //@SentinelResource(value = "fallback")
@@ -63,4 +68,8 @@ public class CircleBreakerController {
         return new CommonResult<>(445, "Sentinel限流，无此流水，blockHandler：" + blockException.getMessage(), payment);
     }
 
+    @GetMapping("/consumer/paymentSql/{id}")
+    public CommonResult<Payment> paymentSql(@PathVariable("id") Long id) {
+        return paymentService.getPaymentSql(id);
+    }
 }
