@@ -36,7 +36,7 @@ public class AccountController {
     @GetMapping("/{user_id}")
     public CommonResult<Account> getById(@PathVariable("user_id") Long userId) {
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(Account::getUsed, userId);
+        queryWrapper.lambda().eq(Account::getUserId, userId);
         return new CommonResult<>(accountService.getOne(queryWrapper));
     }
 }
