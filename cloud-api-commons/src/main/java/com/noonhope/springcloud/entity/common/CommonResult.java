@@ -20,4 +20,10 @@ public class CommonResult<T> {
     public CommonResult(Integer code, String message) {
         this(code, message, null);
     }
+
+    public CommonResult(T data) {
+        this.code = 200;
+        this.message = "成功。";
+        this.data = data;
+    }
 }
