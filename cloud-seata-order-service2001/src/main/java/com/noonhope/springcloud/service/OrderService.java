@@ -3,6 +3,7 @@ package com.noonhope.springcloud.service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.noonhope.springcloud.dao.OrderDao;
 import com.noonhope.springcloud.entity.Order;
+import io.seata.spring.annotation.GlobalTransactional;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
     private IStorageService storageService;
 
     @Override
+    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
     public boolean save(Order order) {
 
         log.info("===创建订单开始...");
