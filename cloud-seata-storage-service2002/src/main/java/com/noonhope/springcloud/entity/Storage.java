@@ -23,5 +23,10 @@ public class Storage {
 
     private Integer residue;
 
-
+    public Storage(Long productId, Integer total, Integer used, Integer residue) {
+        this.productId = productId;
+        this.total = total;
+        this.used = used;
+        this.residue = residue;
+    }
 }

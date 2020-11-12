@@ -24,5 +24,10 @@ public class Account {
 
     private BigDecimal residue;
 
-
+    public Account(Long userId, BigDecimal total, BigDecimal used, BigDecimal residue) {
+        this.userId = userId;
+        this.total = total;
+        this.used = used;
+        this.residue = residue;
+    }
 }
