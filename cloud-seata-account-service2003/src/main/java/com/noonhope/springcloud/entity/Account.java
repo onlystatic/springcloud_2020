@@ -1,6 +1,9 @@
 package com.noonhope.springcloud.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +17,10 @@ import lombok.Setter;
 @TableName("t_account")
 public class Account {
 
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
+    @JsonProperty("user_id")
     private Long userId;
 
     private BigDecimal total;
