@@ -29,8 +29,8 @@ public class AccountController {
             @RequestParam("amount") BigDecimal amount) {
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Account::getUserId, userId);
-        Account accountExist = accountService.getById(queryWrapper);
-        BigDecimal used = accountExist.getUsed().subtract(amount);
+        Account accountExist = accountService.getOne(queryWrapper);
+        BigDecimal used = accountExist.getUsed().add(amount);
         BigDecimal residue = accountExist.getTotal().subtract(used);
         Account account = new Account(accountExist.getId(),userId, accountExist.getTotal(), used, residue);
         boolean result = accountService.updateById(account);

@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author v_qianglong
  * @date 2020/11/12 11:17
  */
-@Component
 @FeignClient(value = "cloud-seata-account-service")
-public interface AccountService {
+public interface IAccountService {
 
     /**
      * 创建

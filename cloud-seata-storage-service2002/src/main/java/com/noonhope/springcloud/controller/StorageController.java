@@ -29,7 +29,7 @@ public class StorageController {
         QueryWrapper<Storage> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Storage::getProductId, productId);
         Storage storageExist = storageService.getOne(queryWrapper);
-        Integer used = storageExist.getUsed() - count;
+        Integer used = storageExist.getUsed() + count;
         Integer residue = storageExist.getTotal() - used;
         Storage storage = new Storage(storageExist.getId(), productId, storageExist.getTotal(), used, residue);
         boolean result = storageService.updateById(storage);
