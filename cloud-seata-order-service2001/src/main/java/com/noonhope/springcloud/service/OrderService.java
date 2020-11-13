@@ -31,11 +31,11 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
         log.info("===创建订单结束...");
 
         log.info("===扣减库存开始..");
-        storageService.create(order.getProductId(), order.getCount());
+        storageService.decrease(order.getProductId(), order.getCount());
         log.info("===扣减库存结束...");
 
         log.info("===扣减账户余额开始..");
-        accountService.create(order.getUserId(), order.getAmount());
+        accountService.decrease(order.getUserId(), order.getAmount());
         log.info("===扣减账户余额结束...");
         return true;
     }

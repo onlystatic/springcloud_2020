@@ -23,5 +23,5 @@ public interface IAccountService {
      * @return
      */
     @PostMapping("/account/decrease")
-    CommonResult<String> create(@RequestParam("user_id") Long userId, @RequestParam("amount") BigDecimal amount);
+    CommonResult<String> decrease(@RequestParam("user_id") Long userId, @RequestParam("amount") BigDecimal amount);
 }

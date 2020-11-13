@@ -24,7 +24,7 @@ public class StorageController {
     private StorageService storageService;
 
     @PostMapping("/decrease")
-    public CommonResult<String> create(@RequestParam("product_id") Long productId,
+    public CommonResult<String> decrease(@RequestParam("product_id") Long productId,
             @RequestParam("count") Integer count) {
         QueryWrapper<Storage> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Storage::getProductId, productId);

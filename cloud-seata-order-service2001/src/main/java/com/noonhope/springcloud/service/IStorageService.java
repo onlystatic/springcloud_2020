@@ -21,5 +21,5 @@ public interface IStorageService {
      * @return
      */
     @PostMapping(value = "/storage/decrease")
-    CommonResult<String> create(@RequestParam("product_id") Long productId, @RequestParam("count") Integer count);
+    CommonResult<String> decrease(@RequestParam("product_id") Long productId, @RequestParam("count") Integer count);
 }

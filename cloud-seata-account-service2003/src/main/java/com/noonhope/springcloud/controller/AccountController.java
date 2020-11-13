@@ -5,7 +5,9 @@ import com.noonhope.springcloud.entity.Account;
 import com.noonhope.springcloud.entity.common.CommonResult;
 import com.noonhope.springcloud.service.AccountService;
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author v_qianglong
  * @date 2020/11/11 11:43
  */
+@Slf4j
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -25,14 +28,21 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/decrease")
-    public CommonResult<String> create(@RequestParam("user_id") Long userId,
-            @RequestParam("amount") BigDecimal amount) {
+    public CommonResult<String> decrease(@RequestParam("user_id") Long userId,
+            @RequestParam("amount") BigDecimal amount, @RequestParam("rollback") Integer rollback) {
+        if (rollback != null) {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                log.error("程序异常，请稍后重试。{}", e.getMessage());
+            }
+        }
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Account::getUserId, userId);
         Account accountExist = accountService.getOne(queryWrapper);
         BigDecimal used = accountExist.getUsed().add(amount);
         BigDecimal residue = accountExist.getTotal().subtract(used);
-        Account account = new Account(accountExist.getId(),userId, accountExist.getTotal(), used, residue);
+        Account account = new Account(accountExist.getId(), userId, accountExist.getTotal(), used, residue);
         boolean result = accountService.updateById(account);
         if (result) {
             return new CommonResult<>(200, "保存成功。", null);
