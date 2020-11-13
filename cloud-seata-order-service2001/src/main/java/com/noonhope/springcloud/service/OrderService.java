@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class OrderService extends ServiceImpl<OrderDao, Order> {
 
     @Resource
-    private IAccountService accountService;
+    private AccountService accountService;
 
     @Resource
-    private IStorageService storageService;
+    private StorageService storageService;
 
     @Override
     @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)

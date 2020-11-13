@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,12 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/11/11 11:43
  */
 @RestController
+@RequestMapping("/account")
 public class AccountController {
 
     @Resource
     private AccountService accountService;
 
-    @GetMapping("/account")
+    @PostMapping("/decrease")
     public CommonResult<String> create(@RequestParam("user_id") Long userId,
             @RequestParam("amount") BigDecimal amount) {
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
@@ -29,8 +32,8 @@ public class AccountController {
         Account accountExist = accountService.getById(queryWrapper);
         BigDecimal used = accountExist.getUsed().subtract(amount);
         BigDecimal residue = accountExist.getTotal().subtract(used);
-        Account account = new Account(userId, accountExist.getTotal(), used, residue);
-        boolean result = accountService.save(account);
+        Account account = new Account(accountExist.getId(),userId, accountExist.getTotal(), used, residue);
+        boolean result = accountService.updateById(account);
         if (result) {
             return new CommonResult<>(200, "保存成功。", null);
         } else {
@@ -38,7 +41,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/account/{user_id}")
+    @GetMapping("/{user_id}")
     public CommonResult<Account> getById(@PathVariable("user_id") Long userId) {
         QueryWrapper<Account> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Account::getUserId, userId);

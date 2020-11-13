@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -15,6 +17,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @TableName("t_account")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
 
     @TableId(type = IdType.AUTO)

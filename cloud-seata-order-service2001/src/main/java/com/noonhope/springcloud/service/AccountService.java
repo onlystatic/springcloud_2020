@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Component
 @FeignClient(value = "cloud-seata-account-service")
-public interface IAccountService {
+public interface AccountService {
 
     /**
      * 创建
@@ -22,6 +23,6 @@ public interface IAccountService {
      * @param amount
      * @return
      */
-    @GetMapping("/account")
+    @PostMapping("/account/decrease")
     CommonResult<String> create(@RequestParam("user_id") Long userId, @RequestParam("amount") BigDecimal amount);
 }
