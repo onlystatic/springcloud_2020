@@ -26,7 +26,7 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
     public boolean save(Order order, Integer rollback) {
 
         log.info("===创建订单开始...");
-        this.getBaseMapper().insert(order);
+        this.save(order);
         log.info("===创建订单结束...");
 
         log.info("===扣减库存开始..");
@@ -36,6 +36,11 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
         log.info("===扣减账户余额开始..");
         accountService.decrease(order.getUserId(), order.getAmount(), rollback);
         log.info("===扣减账户余额结束...");
+
+        log.info("===更新订单状态开始..");
+        order.setStatus(1);
+        this.updateById(order);
+        log.info("===更新订单状态结束...");
         return true;
     }
 }

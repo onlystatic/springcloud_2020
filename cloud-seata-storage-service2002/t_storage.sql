@@ -11,7 +11,7 @@
  Target Server Version : 100311
  File Encoding         : 65001
 
- Date: 13/11/2020 11:22:26
+ Date: 13/11/2020 11:57:31
 */
 
 SET NAMES utf8mb4;
@@ -29,5 +29,10 @@ CREATE TABLE `t_storage`  (
   `residue` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_storage
+-- ----------------------------
+INSERT INTO `t_storage` VALUES (1, 1, 100, 0, 100);
 
 SET FOREIGN_KEY_CHECKS = 1;

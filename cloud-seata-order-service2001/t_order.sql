@@ -11,7 +11,7 @@
  Target Server Version : 100311
  File Encoding         : 65001
 
- Date: 13/11/2020 11:22:18
+ Date: 13/11/2020 11:57:39
 */
 
 SET NAMES utf8mb4;
@@ -29,6 +29,11 @@ CREATE TABLE `t_order`  (
   `amount` decimal(11, 0) NULL DEFAULT 0,
   `status` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+INSERT INTO `t_order` VALUES (1, 1, 1, 10, 100, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
