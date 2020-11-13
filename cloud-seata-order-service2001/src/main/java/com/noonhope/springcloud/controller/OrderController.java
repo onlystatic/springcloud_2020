@@ -24,7 +24,7 @@ public class OrderController {
     @GetMapping("/commit")
     public CommonResult<Order> create() {
         Order order = new Order(1L, 1L, 10, BigDecimal.valueOf(100), 0);
-        if (orderService.save(order)) {
+        if (orderService.save(order, 0)) {
             return new CommonResult<>(200, "创建订单成功。", order);
         } else {
             return new CommonResult<>(200, "创建订单失败。", null);
@@ -34,7 +34,7 @@ public class OrderController {
     @GetMapping("/rollback")
     public CommonResult<Order> rollback() {
         Order order = new Order(1L, 1L, 10, BigDecimal.valueOf(100), 0);
-        if (orderService.save(order)) {
+        if (orderService.save(order, 1)) {
             return new CommonResult<>(200, "创建订单成功。", order);
         } else {
             return new CommonResult<>(200, "创建订单失败。", null);

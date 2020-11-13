@@ -30,7 +30,7 @@ public class AccountController {
     @PostMapping("/decrease")
     public CommonResult<String> decrease(@RequestParam("user_id") Long userId,
             @RequestParam("amount") BigDecimal amount, @RequestParam("rollback") Integer rollback) {
-        if (rollback != null) {
+        if (rollback != null && rollback == 1) {
             try {
                 TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {

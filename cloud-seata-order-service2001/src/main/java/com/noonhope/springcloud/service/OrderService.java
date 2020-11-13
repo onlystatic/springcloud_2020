@@ -22,9 +22,8 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
     @Resource
     private IStorageService storageService;
 
-    @Override
-    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
-    public boolean save(Order order) {
+    @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
+    public boolean save(Order order, Integer rollback) {
 
         log.info("===创建订单开始...");
         this.getBaseMapper().insert(order);
@@ -35,7 +34,7 @@ public class OrderService extends ServiceImpl<OrderDao, Order> {
         log.info("===扣减库存结束...");
 
         log.info("===扣减账户余额开始..");
-        accountService.decrease(order.getUserId(), order.getAmount());
+        accountService.decrease(order.getUserId(), order.getAmount(), rollback);
         log.info("===扣减账户余额结束...");
         return true;
     }
