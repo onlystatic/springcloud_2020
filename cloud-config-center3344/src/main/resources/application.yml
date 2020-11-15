@@ -8,10 +8,10 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:onlystatic/springcloud_config.git #Github上面的仓库名字
+          uri: git@github.com:onlystatic/spring-cloud-config.git #Github上面的仓库名字
           #搜索目录
           search-paths:
-            - springcloud_config
+            - spring-cloud-config
       #默认分支
       label: master
       #curl -X POST "http://localhost:3344/actuator/bus-refresh"
