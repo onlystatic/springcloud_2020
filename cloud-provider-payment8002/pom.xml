@@ -62,18 +62,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.noonhope.com.noonhope.springcloud.PaymentMain8002</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
