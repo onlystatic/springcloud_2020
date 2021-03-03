@@ -5,7 +5,7 @@ import com.noonhope.springcloud.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/11 11:27
  */
 @Mapper

@@ -3,7 +3,7 @@ package com.noonhope.springcloud.service;
 import org.springframework.stereotype.Component;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/10/29 20:02
  */
 @Component

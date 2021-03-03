@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/9 13:08
  */
 @RestController

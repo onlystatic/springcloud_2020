@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/12 11:17
  */
 @FeignClient(value = "cloud-seata-account-service")

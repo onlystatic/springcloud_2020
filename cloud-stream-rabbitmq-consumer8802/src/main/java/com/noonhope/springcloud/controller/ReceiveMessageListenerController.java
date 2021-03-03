@@ -8,7 +8,7 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/6 13:42
  */
 @Component

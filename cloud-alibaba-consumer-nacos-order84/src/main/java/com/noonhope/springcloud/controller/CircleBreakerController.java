@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/10 11:23
  */
 @RestController

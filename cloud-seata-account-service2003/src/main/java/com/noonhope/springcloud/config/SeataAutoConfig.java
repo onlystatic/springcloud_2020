@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/12 13:47
  */
 @Configuration

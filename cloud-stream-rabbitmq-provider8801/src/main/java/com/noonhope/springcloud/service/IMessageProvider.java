@@ -1,7 +1,7 @@
 package com.noonhope.springcloud.service;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/6 13:16
  */
 public interface IMessageProvider {

@@ -9,7 +9,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 
 /**
- * @author v_qianglong
+ * @author onlystatic
  * @date 2020/11/6 13:17
  */
 @EnableBinding(Source.class)
